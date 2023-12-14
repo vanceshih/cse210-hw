@@ -270,6 +270,13 @@ class Program
         {
             goal.RecordCompletion();
             totalPoints += goal.Value;
+
+                // Check if the goal is a ChecklistGoal and add bonus points if necessary
+                if (goal is ChecklistGoal checklistGoal && checklistGoal.CompletionCount == checklistGoal.TargetCount)
+                {
+                    totalPoints += checklistGoal.BonusPoints;
+                }
+                
             Console.WriteLine($"Event recorded for {goalName}. You earned {goal.Value} points.");
         }
         else
